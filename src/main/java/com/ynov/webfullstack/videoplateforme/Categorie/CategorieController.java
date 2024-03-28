@@ -44,7 +44,7 @@ public class CategorieController {
         return ResponseEntity.status(HttpStatus.OK).body(repository.save(categ));
     }
     @DeleteMapping("/categories/{id}")
-    public void deleteImage(@PathVariable UUID id) {
+    public void deleteUtilisateur(@PathVariable UUID id) {
         if (repository.findById(id).orElse(null) == null) throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 
         repository.deleteById(id);

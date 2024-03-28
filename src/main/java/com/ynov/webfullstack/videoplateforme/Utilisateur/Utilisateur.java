@@ -53,6 +53,7 @@ public class Utilisateur {
     public void setUsername(String username) {
         this.username = username;
     }
+    
      public void setCategorie(Categorie categorie) {
         this.categorie = categorie;
     }

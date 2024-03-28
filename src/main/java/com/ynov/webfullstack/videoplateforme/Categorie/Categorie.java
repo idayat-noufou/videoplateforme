@@ -42,6 +42,7 @@ public class Categorie {
     public void setId(UUID id) {
         this.id = id;
     }
+    
     public String getTitre() {
         return this.titre;
     }
