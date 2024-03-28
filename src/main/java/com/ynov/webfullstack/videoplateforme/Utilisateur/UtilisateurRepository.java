@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UtilisateurRepository extends JpaRepository<Utilisateur, UUID>{
     List<Utilisateur> findByCategorieId(UUID id);
-    List<Utilisateur> findByUsername(String username);
+    List<Utilisateur> findByUsernameContainingIgnoreCase(String username);
     
 
      

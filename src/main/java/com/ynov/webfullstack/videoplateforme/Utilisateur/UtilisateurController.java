@@ -47,30 +47,28 @@ public class UtilisateurController {
         user.setCategorie(categorie);
         if(repository.existsById(utilisateur.getId())) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Cannot override already existing user");
-
         }
         return ResponseEntity.status(HttpStatus.OK).body(repository.save(user));
     }
 
     @DeleteMapping("/utilisateurs/{id}")
-    public void deleteImage(@PathVariable UUID id) {
+    public void deleteUtilisateur(@PathVariable UUID id) {
         if (repository.findById(id).orElse(null) == null) throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-
         repository.deleteById(id);
     }
 
-    @GetMapping("/utilisateursByRole") 
-    public List <Utilisateur> getByRoleId(@RequestParam UUID roleId) {
-        List <Utilisateur> utilisateurs = repository.findByCategorieId(roleId);
-        if(utilisateurs != null) return utilisateurs;
-        else throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Cound not find user with roleId " + roleId);
+    @GetMapping("/utilisateursByCategorieId") 
+    public List <Utilisateur> getByCategorieId(@RequestParam UUID categorieId) {
+        List <Utilisateur> utilisateurs = repository.findByCategorieId(categorieId);
+        return utilisateurs;
+        
+        
     }
 
     @GetMapping("/utilisateursByUsername") 
-    public List<Utilisateur> findByUsername(@RequestParam String username) {
-        List <Utilisateur> utilisateurs= repository.findByUsername(username);
-        if(utilisateurs != null) return utilisateurs;
-        else throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Cound not find user with username " + username);
+    public List<Utilisateur> getByUsername(@RequestParam String username) {
+        List <Utilisateur> utilisateurs= repository.findByUsernameContainingIgnoreCase(username);
+        return utilisateurs;
     }
 
 }
