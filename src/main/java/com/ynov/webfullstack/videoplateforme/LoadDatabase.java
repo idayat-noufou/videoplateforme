@@ -1,5 +1,7 @@
 package com.ynov.webfullstack.videoplateforme;
 
+import com.ynov.webfullstack.videoplateforme.Categorie.Categorie;
+import com.ynov.webfullstack.videoplateforme.Categorie.CategorieRepository;
 import com.ynov.webfullstack.videoplateforme.Tag.Tag;
 import com.ynov.webfullstack.videoplateforme.Tag.TagRepository;
 import com.ynov.webfullstack.videoplateforme.Video.Video;
@@ -15,7 +17,7 @@ import java.util.List;
 public class LoadDatabase {
 
     @Bean
-    CommandLineRunner initDatabase(TagRepository tagRepo, VideoRepository videoRepo) {
+    CommandLineRunner initDatabase(TagRepository tagRepo, VideoRepository videoRepo, CategorieRepository repository) {
         return args -> {
 
             Tag tag1 = new Tag("education");
@@ -47,6 +49,9 @@ public class LoadDatabase {
 
             Video video4 = new Video("Un jour, une question : Pourquoi les chats ronronnent ?","une courte desc","une très longue desc");
             videoRepo.save(video4);
+
+            Categorie categorie = new Categorie("Utilisateur", "Rôle par défaut");
+            repository.save(categorie);
 
         };
     }
