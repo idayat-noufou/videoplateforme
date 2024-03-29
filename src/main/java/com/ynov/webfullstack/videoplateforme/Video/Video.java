@@ -19,7 +19,7 @@ public class Video {
     private String shortDescription;
     @NotNull
     private String longDescription;
-    @ManyToMany(mappedBy = "videos")
+    @ManyToMany
     private List<Tag> tags;
 
     public Video() {
@@ -48,7 +48,7 @@ public class Video {
     }
 
     public String getShortDescription() {
-        return shortDescription;
+        return this.shortDescription;
     }
 
     public void setShortDescription(String shortDescription) {
@@ -56,7 +56,7 @@ public class Video {
     }
 
     public String getLongDescription() {
-        return longDescription;
+        return this.longDescription;
     }
 
     public void setLongDescription(String longDescription) {
@@ -64,10 +64,21 @@ public class Video {
     }
 
     public List<Tag> getTags() {
-        return tags;
+        return this.tags;
     }
 
     public void setTags(List<Tag> tags) {
         this.tags = tags;
+    }
+
+    @Override
+    public String toString() {
+        return "Video{" +
+                "id=" + id +
+                ", titre='" + titre + '\'' +
+                ", shortDescription='" + shortDescription + '\'' +
+                ", longDescription='" + longDescription + '\'' +
+                ", tags=" + tags +
+                '}';
     }
 }
