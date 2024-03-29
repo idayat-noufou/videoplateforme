@@ -16,8 +16,8 @@ public class Tag {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
     private String titre;
-    @ManyToMany
     @JsonIgnore
+    @ManyToMany(mappedBy = "tags")
     private List<Video> videos;
 
     public Tag() {

@@ -52,7 +52,16 @@ public class VideoController {
             }
         }
         Video videoS = new Video(video.getTitre(), video.getShortDescription(), video.getLongDescription());
-        videoS.setTags(video.getTags());
+        if (video.getTags() != null) {
+            List<Tag> tags = new ArrayList<>();
+            for (Tag tag : video.getTags()) {
+                if (tagRepository.findByTitre(tag.getTitre()).isEmpty()) {
+                    throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Le tag " + tag.getTitre() + " n'existe pas");
+                }
+                tags.add(tagRepository.findByTitre(tag.getTitre()).get());
+            }
+        videoS.setTags(tags);
+        }
         return repository.save(videoS);
     }
 
